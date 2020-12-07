@@ -1,10 +1,12 @@
 import React from 'react';
 import './App.css';
+import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import NewsList from './components/NewsList';
 import Spinner from './components/Spinner';
+import News from './components/News';
 
 const mainUrl = 'https://hacker-news.firebaseio.com';
-const numberOfNews = 100;
+const numberOfNews = 10;
 
 class App extends React.Component {
   constructor() {
@@ -29,7 +31,7 @@ class App extends React.Component {
   setPolling = async () => {
     await this.fetchData();
 
-    const timerId = setInterval(this.fetchData, 60000);
+    const timerId = setInterval(this.fetchData, 60000); // Не забыть поменять обратно
 
     this.setState({ timerId });
   }
@@ -55,14 +57,31 @@ class App extends React.Component {
     const { fetched, articles } = this.state;
 
     return (
-      <>
-        {fetched
-          ? (<>
-              <NewsList articles={articles} />
-              <button onClick={this.fetchData}>Нажималка</button>
-             </>)
-          : <Spinner />}
-      </>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/">
+            <>
+              {fetched
+                ? (<>
+                    <button className="button__reload" onClick={this.fetchData}>Обновить</button>
+                    <NewsList articles={articles} />
+                  </>)
+                : <Spinner />}
+            </>
+          </Route>
+
+          <Route exact path="/:id">
+            <div className="news-bar">
+              <NavLink to="/" className="button__come-back">Вернуться на главную</NavLink>
+              <button className="button__reload">Обновить</button>
+            </div>
+            <News articles={articles} />
+          </Route>
+        </Switch>
+
+      </BrowserRouter>
+
+
     );
   }
 }

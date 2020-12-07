@@ -2,24 +2,76 @@ body {
 	background-color: #919C8F;
 }
 
-.news {
+#root {
 	max-width: 1440px;
-  min-width: 320px;
+	min-width: 320px;
+	margin: 20px auto;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	align-items: center;
+	padding: 0px 7%;
+}
+
+.news-bar {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 20px;
+}
+
+/* @media screen and (max-width: 767px) {
+  .news-bar {
+		flex-direction: column;
+  }
+} */
+
+
+.button__reload {
+	text-decoration: none;
+	background-color: #31393B;
+	border: #C5963A solid 2px;
+	border-radius: 5px;
+	margin-left: auto;
+	padding: 10px 40px;
+	font-size: 26px;
+	line-height: 30px;
+	letter-spacing: 2px;
+	color: #F1EFE8;
+}
+
+.button__come-back {
+	text-decoration: none;
+	background-color: #31393B;
+	border: #C5963A solid 2px;
+	border-radius: 5px;
+	margin-right: 50px;
+	padding: 10px 40px;
+	font-size: 26px;
+	line-height: 30px;
+	letter-spacing: 2px;
+	color: #F1EFE8;
+}
+
+.button__reload:hover {
+	box-shadow: 0 8px 10px #778074;
+	color: #C5963A;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.button__come-back:hover {
+	box-shadow: 0 8px 10px #778074;
+	color: #C5963A;
+  transition: all .3s ease;
+  cursor: pointer;
+}
+
+.news {
 	padding: 30px 0px 50px;
 	margin: 0 auto;
 }
 
-.news__reload {
-	background-color: #C5963A;
-	border-color: #916855;
-	border-radius: 5px;
-	position: fixed;
-	top: 0px;
-	right: 0px;
-	margin-left: auto;
-	width: 10%;
-	/* height: 30%; */
-}
 
 .news__container {
 	width: 100%;
@@ -51,7 +103,7 @@ body {
 	text-decoration: none;
 	display: flex;
 	flex-direction: column;
-	justify-content: space-between;
+	justify-content: flex-start;
 	background-color: #F1EFE8;
 	color: #31393B;
 	border-radius: 10px;
@@ -78,7 +130,7 @@ body {
 .news__title {
 	font-size: 26px;
 	line-height: 30px;
-	margin: 0;
+	margin: 0px 0px 40px;
 }
 
 .news__author {
@@ -93,7 +145,7 @@ body {
 }
 
 .news__information {
-	margin: 40px 0px 0px;
+	margin: auto 0px 0px;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
