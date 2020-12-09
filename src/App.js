@@ -3,10 +3,10 @@ import './App.css';
 import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
 import NewsList from './components/NewsList';
 import Spinner from './components/Spinner';
-import News from './components/News';
+import Article from './components/Article';
 
 const mainUrl = 'https://hacker-news.firebaseio.com';
-const numberOfNews = 10;
+const numberOfNews = 100;
 
 class App extends React.Component {
   constructor() {
@@ -70,12 +70,8 @@ class App extends React.Component {
             </>
           </Route>
 
-          <Route exact path="/:id">
-            <div className="news-bar">
-              <NavLink to="/" className="button__come-back">Вернуться на главную</NavLink>
-              <button className="button__reload">Обновить</button>
-            </div>
-            <News articles={articles} />
+          <Route path="/:id" component={Article}>
+
           </Route>
         </Switch>
 
@@ -85,6 +81,9 @@ class App extends React.Component {
     );
   }
 }
-
+/* <div className="news-bar">
+<NavLink to="/" className="button__come-back">Вернуться на главную</NavLink>
+<button className="button__reload">Обновить</button>
+</div> */
 
 export default App;
