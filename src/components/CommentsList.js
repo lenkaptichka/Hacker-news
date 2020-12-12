@@ -1,11 +1,8 @@
 import React from 'react';
 import Comment from './Comment';
-import './CommentsList.css'
-import Spinner from './Spinner';
+import '../styles/CommentsList.css'
 
 const mainUrl = 'https://hacker-news.firebaseio.com';
-
-
 
 class CommentsList extends React.Component {
 	constructor(props) {
@@ -19,44 +16,36 @@ class CommentsList extends React.Component {
 
 	componentDidMount () {
     this.fetchComment();
-		console.log(this.props);
 	}
 	
 	fetchComment = async() => {
 		const comment = await Promise.all(
 			this.props.comments.map(commentId => {
-				return fetch(`${mainUrl}/v0/item/${commentId}.json?print=pretty`).then(data => data.json());
+				return fetch(`${mainUrl}/v0/item/${commentId}.json?print=pretty`)
+					.then(data => data.json());
 			})
 		)
 
-		this.setState({ texts: comment, fetched: true });
-
-		
-		
+		this.setState({ texts: comment, fetched: true });	
 	}
+
 	render() {
 		const { fetched, texts } = this.state;
 		return (
 			<>
-				{fetched ? 
-					(<>
+				{fetched 
+				? (<>
 						<div className="comments">
-							<h4 className="comments__title">Комментарии</h4>
+							<h4 className="comments__title">Comments</h4>
 							{texts.map(text => {
 								return <Comment text={text} key={text.id} />
 							})}
 						</div>
-					</>) : <p>Комментарии загружаются . . .</p>}
-
-
+					</>) 
+				: <p>Comments are loading . . .</p>}
 			</>
-
-
 		)
 	}
-
-
-
 }
 
 export default CommentsList;

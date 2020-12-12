@@ -1,53 +1,48 @@
 import React from 'react';
-import './Comment.css';
+import '../styles/Comment.css';
+import SubCommentsList from './SubCommentsList';
+import arrow from '../images/angle-arrow-down.svg';
 
-const mainUrl = 'https://hacker-news.firebaseio.com';
+class Comment extends React.Component {
+	constructor(props) {
+		super(props);
 
-const Comment = ( {text} ) => {
-	return (
-		<div className="comments__first-items">{text.text}</div>
-	)
+		this.state = {
+			hasChild: false,
+			isCliked: false
+		}
+	}
+
+	componentDidMount() {
+		this.checkedChild();
+	}
+
+	checkedChild = () => {		
+		{this.props.text.kids === undefined ? this.setState({ hasChild: false }) : this.setState({ hasChild: true })}
+	}
+
+	handleClick = () => {
+		this.state.hasChild && this.setState({ isCliked: true })
+	}
+
+	render() {
+		const { text } = this.props;	
+		const commentText = text.text;
+
+		return (
+			<>
+				<div className="comments__wrap" onClick={this.handleClick}>
+					{text.deleted 
+						? <div className="comments__first-items comments__first-items_deleted">*Sorry, this comment has been deleted</div>
+						: <div className="comments__first-items" dangerouslySetInnerHTML={{__html: commentText}} />
+					}	
+
+					{this.state.hasChild && <img src={arrow} width="20" className="comments__arrow" />}				
+				</div>
+				{this.state.isCliked && <SubCommentsList comments={this.props.text.kids} /> }
+			</>
+		)
+	}
 }
-
-// class Comment extends React.Component {
-// 	constructor(props) {
-// 		super(props);
-
-// 		this.state = {
-// 			text: null,
-// 			fetched: false
-// 		}
-
-
-// 	}
-
-// 	componentDidMount () {
-// 		this.fetchComment();
-// 		console.log(this.props)
-//   }
-
-// 	fetchComment = async() => {
-// 		const comment = await fetch(`${mainUrl}/v0/item/${this.props.commentId}.json?print=pretty`).then(data => data.json());
-// 		console.log('Полученный коммент', comment)
-// 		this.setState({ text: comment.text, fetched: true });
-
-		
-		
-// 	}
-
-// 	render() {
-// 		const { fetched, text } = this.state;
-
-// 		return(
-// 			<>
-// 				{this.state.fetched ? <p>{text}</p> : <p>Загружаю комментарий</p>}
-// 			</>
-// 		)
-// 	}
-
-
-
-
-// }
 
 export default Comment;

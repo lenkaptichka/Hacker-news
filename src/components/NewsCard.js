@@ -1,9 +1,8 @@
 import React from 'react';
-import star from './star.svg';
+import star from '../images/star.svg';
+import '../styles/NewsCard.css'
 
-const NewsCard = ({ article }) => {
-  console.log(article)
-  
+const NewsCard = ({ article }) => { 
   const timeFormat = new Date(article.time * 1000);
   const displayDate = `${timeFormat.getDate()}.${timeFormat.getMonth() + 1}.${timeFormat.getFullYear()}`;
 
@@ -19,9 +18,7 @@ const NewsCard = ({ article }) => {
         </div>
       </div>
     </>
-
   );
-
 }
 
 export default NewsCard;

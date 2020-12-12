@@ -27,19 +27,17 @@ class App extends React.Component {
     this.unsetPolling();
   }
 
-
   setPolling = async () => {
     await this.fetchData();
-
-    const timerId = setInterval(this.fetchData, 60000); // Не забыть поменять обратно
+    const timerId = setInterval(this.fetchData, 60000);
 
     this.setState({ timerId });
   }
 
-  fetchData = async () => {
-    
-    const articleIds = await fetch(`${mainUrl}/v0/newstories.json?print=pretty&orderBy="$key"&limitToFirst=${numberOfNews}`).then(data => data.json());
-    
+  fetchData = async () => {  
+    const articleIds = await fetch(`${mainUrl}/v0/newstories.json?print=pretty&orderBy="$key"&limitToFirst=${numberOfNews}`)
+      .then(data => data.json());
+
     const articles = await Promise.all(
       articleIds.map(articleId => {
         return fetch(`${mainUrl}/v0/item/${articleId}.json`).then(data => data.json());
@@ -63,27 +61,18 @@ class App extends React.Component {
             <>
               {fetched
                 ? (<>
-                    <button className="button__reload" onClick={this.fetchData}>Обновить</button>
+                    <button className="button__reload" onClick={this.fetchData}>Refresh</button>
                     <NewsList articles={articles} />
                   </>)
                 : <Spinner />}
             </>
           </Route>
 
-          <Route path="/:id" component={Article}>
-
-          </Route>
+          <Route path="/:id" component={Article} />
         </Switch>
-
       </BrowserRouter>
-
-
     );
   }
 }
-/* <div className="news-bar">
-<NavLink to="/" className="button__come-back">Вернуться на главную</NavLink>
-<button className="button__reload">Обновить</button>
-</div> */
 
 export default App;
