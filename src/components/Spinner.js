@@ -1,21 +1,13 @@
 import React from 'react';
-import './Spinner.css'
+import '../styles/Spinner.css'
 
 function Spinner() {
 	return (
-		<div className="lds-default">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+		<div className="spinner">
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
 		</div>
 	)
 }

@@ -1,0 +1,42 @@
+.news__date {
+	color: #916855;
+	margin: 0px 0px 12px;
+	font-size: 18px;
+	line-height: 24px;
+}
+
+.news__title {
+	font-size: 26px;
+	line-height: 30px;
+	margin: 0px 0px 40px;
+}
+
+.news__information {
+	margin: auto 0px 0px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.news__author {
+	color: #916855;
+	font-style: italic;
+	font-size: 18px;
+	line-height: 20px;
+	letter-spacing: 0.4px;
+	margin: 0;
+}
+
+.news__rating {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	color: #C5963A;
+	align-items: center;
+}
+
+.news__rating-value {
+	margin: 0px 0px 0px 10px;
+	font-size: 20px;
+	line-height: 20px;
+}

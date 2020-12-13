@@ -1,14 +1,13 @@
 import React from 'react';
-import star from './star.svg';
+import star from '../images/star.svg';
+import '../styles/NewsCard.css'
 
-const NewsCard = ({ article }) => {
-  console.log(article);
-  
+const NewsCard = ({ article }) => { 
   const timeFormat = new Date(article.time * 1000);
   const displayDate = `${timeFormat.getDate()}.${timeFormat.getMonth() + 1}.${timeFormat.getFullYear()}`;
 
   return (
-    <div className="news__item">
+    <>
       <p className="news__date">{displayDate}</p>
       <h2 className="news__title">{article.title}</h2>
       <div className="news__information">
@@ -18,9 +17,8 @@ const NewsCard = ({ article }) => {
           <h4 className="news__rating-value">{article.score}</h4>
         </div>
       </div>
-    </div>
+    </>
   );
-
 }
 
 export default NewsCard;

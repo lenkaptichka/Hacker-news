@@ -1,0 +1,19 @@
+.comments {
+	display: flex;
+	flex-direction: column;
+	background-color: #F1EFE8;
+	border-radius: 5px;
+	color: #31393B;
+	padding: 10px;
+	border: 2px solid #C5963A;
+	font-size: 18px;
+	line-height: 18px;
+}
+
+.comments__title {
+	color: #C5963A;
+	font-style: italic;
+	font-weight: bold;
+	font-size: 20px;
+	margin: 0px 0px 14px;
+}
