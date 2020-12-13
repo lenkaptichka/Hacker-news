@@ -7,11 +7,7 @@
 	color: #31393B;
 	width: 70%;
 	box-sizing: border-box;
-	/* min-width: 900px; */
 }
-
-
-
 
 .article__main-information {
 	display: flex;
@@ -24,7 +20,6 @@
 .article__title {
 	margin: 0px 50px 0px 0px;
 	font-size: 30px;
-
 }
 
 .article__date {
@@ -46,7 +41,6 @@
 	cursor: pointer;
 	color: #C5963A;
 	transition: .3s ease;
-
 }
 
 .article__about {
@@ -62,7 +56,6 @@
 	font-weight: bold;
 	font-size: 22px;
 	line-height: 24px;
-	/* text-transform: uppercase; */
 	margin: 0;
 }
 
@@ -78,7 +71,6 @@
 .article__comment-counter {
 	margin: 0px 0px 0px 10px;
 	font-size: 24px;
-	/* line-height: 20px; */
 }
 
 .article__no-comments {
@@ -87,7 +79,6 @@
 	line-height: 20px;
 	font-style: italic;
 }
-
 
 .news-bar {
 	display: flex;
@@ -108,7 +99,6 @@
 	background-color: #31393B;
 	border: #F1EFE8 solid 2px;
 	border-radius: 5px;
-	/* margin-right: 50px; */
 	padding: 10px 40px;
 	font-size: 26px;
 	line-height: 30px;
@@ -135,7 +125,6 @@
 		width: 85%;
 	}
 }
-
 
 @media screen and (max-width: 767px) {
 	.article, .news-bar {

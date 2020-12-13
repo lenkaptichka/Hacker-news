@@ -3,11 +3,11 @@ import '../styles/Spinner.css'
 
 function Spinner() {
 	return (
-		<div className="lds-ring">
-			<div></div>
-			<div></div>
-			<div></div>
-			<div></div>
+		<div className="spinner">
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
+			<div className="spinner__item"></div>
 		</div>
 	)
 }

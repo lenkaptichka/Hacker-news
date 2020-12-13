@@ -16,6 +16,7 @@
 	text-decoration: none;
 	color: #31393B;
 	line-height: 24px;
+	overflow: hidden;
 }
 
 .comments__first-items_deleted {

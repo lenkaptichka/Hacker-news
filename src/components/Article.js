@@ -16,7 +16,7 @@ class Article extends React.Component {
 			article: null,
 			timerId: null,
 			fetched: false,
-			fetching: false,
+			fetching: false
 		}
 	}
 
@@ -37,13 +37,16 @@ class Article extends React.Component {
 	}
 	
 	unsetPolling = () => {
-    clearInterval(this.state.timerId);
+		clearInterval(this.state.timerId);
 	}
 	
 	fetchData = async () => {		
-		if (!this.state.fetching) {		
+		if (!this.state.fetching) {
 			this.setState({ fetching: true });
-			const article = await fetch(`${mainUrl}/v0/item/${this.state.id}.json`).then(data => data.json());
+
+			const article = await fetch(`${mainUrl}/v0/item/${this.state.id}.json`)
+				.then(data => data.json());
+			
 			this.setState({ article, fetched: true, fetching: false })
 		}
   }
@@ -59,18 +62,17 @@ class Article extends React.Component {
 	}
 
 	render() {
-		const { fetched, article } = this.state;
+		const { fetched, article, fetching } = this.state;
 		
 		return (
 			<>
-				{this.state.fetched 
+				{fetched 
 					? (
 					<>
 						<div className="news-bar">
 							<NavLink to="/" className="button__come-back">Back to homepage</NavLink>
-							<button className="button__reload" onClick={this.fetchData}>Refresh</button>
+							<button className="button__reload" disabled={fetching} onClick={this.fetchData}>Refresh</button>
 						</div>
-
 						<div className="article">
 							<div className="article__main-information">
 								<h1 className="article__title">{article.title}</h1>

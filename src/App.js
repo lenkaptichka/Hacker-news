@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { BrowserRouter, Route, Switch, NavLink } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import NewsList from './components/NewsList';
 import Spinner from './components/Spinner';
 import Article from './components/Article';
@@ -15,7 +15,8 @@ class App extends React.Component {
     this.state = {
       articles: [],
       timerId: null,
-      fetched: false
+      fetched: false,
+      fetching: false
     };
   }
 
@@ -34,17 +35,22 @@ class App extends React.Component {
     this.setState({ timerId });
   }
 
-  fetchData = async () => {  
-    const articleIds = await fetch(`${mainUrl}/v0/newstories.json?print=pretty&orderBy="$key"&limitToFirst=${numberOfNews}`)
-      .then(data => data.json());
+  fetchData = async () => {
+    if(!this.state.fetching) {
+      this.setState({ fetching: true });
 
-    const articles = await Promise.all(
-      articleIds.map(articleId => {
-        return fetch(`${mainUrl}/v0/item/${articleId}.json`).then(data => data.json());
-      })
-    );
+      const articleIds = await fetch(`${mainUrl}/v0/newstories.json?print=pretty&orderBy="$key"&limitToFirst=${numberOfNews}`)
+        .then(data => data.json());
 
-    this.setState({ articles , fetched: true });
+      const articles = await Promise.all(
+        articleIds.map(articleId => {
+          return fetch(`${mainUrl}/v0/item/${articleId}.json`)
+            .then(data => data.json());
+        })
+      );
+
+      this.setState({ articles , fetched: true, fetching: false });
+    }
   }
 
   unsetPolling = () => {
@@ -52,7 +58,7 @@ class App extends React.Component {
   }
 
   render() {
-    const { fetched, articles } = this.state;
+    const { fetched, articles, fetching } = this.state;
 
     return (
       <BrowserRouter>
@@ -61,7 +67,7 @@ class App extends React.Component {
             <>
               {fetched
                 ? (<>
-                    <button className="button__reload" onClick={this.fetchData}>Refresh</button>
+                    <button className="button__reload" disabled={fetching} onClick={this.fetchData}>Refresh</button>
                     <NewsList articles={articles} />
                   </>)
                 : <Spinner />}
